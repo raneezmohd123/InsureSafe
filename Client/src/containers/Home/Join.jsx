@@ -1,4 +1,4 @@
-import Hand from "../assets/hand1.png"
+import Hand from "../../assets/hand1.png"
 
 
 function Join() {

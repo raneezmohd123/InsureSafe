@@ -1,7 +1,7 @@
 import{useState} from "react";
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
-import hero from "../assets/hero.png"
-import Hero from "../containers/hero"
+import hero from "../../assets/hero.png"
+import Hero from "./hero"
 //import Join from "../containers/Join";
 function Navbar() {
     const[nav,setNav]=useState(false);
