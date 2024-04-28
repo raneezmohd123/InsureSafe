@@ -1,14 +1,14 @@
-
-import Navbar from "./Home/Navbar"
+import Footer from "./Home/Footer"
 import Join from "./Home/Join"
 import Moto from "../components/Moto"
 import AboutUs from "./Home/AboutUs"
 import ContactUs from "./Home/ContactUs"
-import Footer from "./Home/Footer"
+import Hero from "./Home/hero"
 function home() {
   return (
     <>
-      <Navbar/>
+     
+      <Hero/>
      <Moto datas={{title:'Insurance Claims Made Simple',
      subTitle1:'Submit and track your insurance claims with ease. Our platform simplifies the process,',
      subTitle2:'ensuring you get the support you need when it matters most.'}}/>

@@ -1,13 +1,27 @@
-//import { createBrowserRouter } from "react-router-dom"
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./containers/home"
+import Mainlayout from "./containers/mainlayout";
+import Customer from "./containers/Home/customer"
+import Dashboard from "./containers/Dashboard/dashboard"
+const router=createBrowserRouter([
+  {
+    path:"/",
+    element:<Mainlayout/>,
+    children:[
+      {path:"/", element:<Home/>},
+      {path:"dashboard",element:<Dashboard/>},
+      {path:"customer",element:<Customer/>}
+    ]
+
+  }
+])
+
 
 function App() {
   
 
   return (
-    <>
-    <Home/>
-    </>
+  <RouterProvider router={router}/>
   )
 }
 

@@ -3,17 +3,17 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
+    'node_modules/flowbite-react/lib/esm/**/*.js'
   ],
   theme: {
     fontFamily:{
     'Inter':["Inter",'sans-serif']
     },
-    // colors:{
-    // blue:{
-    //   500:'#2154A0',},
 
     
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('flowbite/plugin')
+  ],
 }
