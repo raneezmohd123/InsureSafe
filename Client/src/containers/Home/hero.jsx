@@ -14,7 +14,7 @@ function hero() {
       </div>
       </div>
       
-      <div className="hidden md:flex  xl:mr-[115px] mt-[10rem]">
+      <div className="hidden md:flex  xl:mr-[115px] mt-[10rem] cursor-auto" >
       <img src={hero_pic} alt="text" />
       
       </div>

@@ -2,11 +2,14 @@ import{useState} from "react";
 import PropTypes from "prop-types"
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import CryptoCard from "../../components/CryptoCard";
+import Logo from "../../assets/Logo.png"
+import { Link} from "react-scroll";
 //import{useNavigate} from "react-router-dom"
 
 
 const OptionComponent = ({option}) => {
   // Render your component based on the selected option
+ 
   switch (option.label) {
     case 'CUSTOMER':
       return <CryptoCard data={{title:'CUSTOMER'}}/>;
@@ -47,7 +50,7 @@ function Navbar() {
       
         const options = [
           { label: 'CUSTOMER', component: <CryptoCard/> },
-          { label: 'POVIDER' },
+          { label: 'POVIDER' ,component:<CryptoCard/>},
           { label: 'POLICE' },
           { label: 'GARAGE' },
           // Add more options and their corresponding components as needed
@@ -55,16 +58,23 @@ function Navbar() {
 
   return (
     <>
-    <section className=" mx-auto pointer-events-auto " id="footer">
+    <section className=" mx-auto pointer-events-auto " id="navbar">
+    <img src={Logo} alt="" className="fixed w-[38px] h-[30px] mt-[33px] ml-[59px]"/>
        <nav className="fixed w-full flex mx-auto justify-between items-center py-[25px] px-[100px]" >
-        <h1 className="md:text-[30px] text-white font-bold">InsureSafe</h1>
+       <Link to="navbar" spy={true} smooth={true} offset={-500} duration={500}>
+        <h1 className="md:text-[30px] text-white font-bold cursor-pointer">InsureSafe</h1></Link>
         
         <ul className='hidden md:flex xl:ml-[26rem] font-medium cursor-pointer'>
-        <li className='p-3 text-[18px]  text-white '>Home</li>
-        <li className='p-3 text-[18px] text-white'>Company</li>
-        <li className='p-3 text-[18px] text-white'>Resources</li>
-        <li className='p-3 text-[18px] text-white'>About</li>
-        <li className='p-3 text-[18px] text-white'>Contact</li>
+        <Link to="navbar" spy={true} smooth={true} offset={-500} duration={500}>
+        <li className='p-3 text-[18px]  text-white '>Home</li></Link>
+        <Link to="join" spy={true} smooth={true} offset={-200} duration={300} >
+        <li className='p-3 text-[18px] text-white'>Join</li></Link>
+        <Link to="" smooth={true} offset={200} duration={300}> 
+        <li className='p-3 text-[18px] text-white'>Resources</li> </Link>
+        <Link to="about_us" smooth={true} offset={200} duration={300}>
+           <li className='p-3 text-[18px] text-white'>About</li></Link>
+           <Link to="contact_us" smooth={true} offset={200} duration={300}>
+        <li className='p-3 text-[18px] text-white'>Contact</li></Link>
       </ul>
         
         <button className="hidden md:flex rounded-md  font-bold py-2 px-4 2xl:ml-[35rem]  bg-[#6739E4] box-border  text-white" onClick={toggleDropdown} 
