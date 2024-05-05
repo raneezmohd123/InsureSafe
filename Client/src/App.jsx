@@ -2,7 +2,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./containers/home"
 import Mainlayout from "./containers/mainlayout";
 import Customer from "./containers/Home/customer"
-import Dashboard from "./containers/Dashboard/dashboard"
+import Dashboard from "./components/metamask/dashboard";
 const router=createBrowserRouter([
   {
     path:"/",

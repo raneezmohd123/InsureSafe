@@ -1,7 +1,7 @@
 import{useState} from "react";
 import PropTypes from "prop-types"
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
-import CryptoCard from "../../components/CryptoCard";
+import CryptoCard from "../../components/metamask/CryptoCard";
 import Logo from "../../assets/Logo.png"
 import { Link} from "react-scroll";
 //import{useNavigate} from "react-router-dom"
@@ -49,8 +49,8 @@ function Navbar() {
         };
       
         const options = [
-          { label: 'CUSTOMER', component: <CryptoCard/> },
-          { label: 'POVIDER' ,component:<CryptoCard/>},
+          { label: 'CUSTOMER' },
+          { label: 'POVIDER' },
           { label: 'POLICE' },
           { label: 'GARAGE' },
           // Add more options and their corresponding components as needed
@@ -93,7 +93,7 @@ function Navbar() {
             {options.map((option, index) => (
               <button
                 key={index}
-                onClick={() => handleOptionClick(option,)}
+                onClick={() => handleOptionClick(option)}
                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 w-full text-left"
                 role="menuitem"
               >
@@ -127,7 +127,7 @@ function Navbar() {
   )
 }
 Navbar.propTypes={
-  data:PropTypes.string.isRequired,
+  data:PropTypes.object.isRequired,
   
 
 };

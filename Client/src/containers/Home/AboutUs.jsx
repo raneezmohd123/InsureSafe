@@ -11,6 +11,6 @@ function AboutUs({datas}) {
   )
 }
 AboutUs.propTypes={
-  datas:PropTypes.string.isRequired
+  datas:PropTypes.object.isRequired
 };
 export default AboutUs

@@ -1,14 +1,51 @@
+import React from "react";
 import PropTypes from "prop-types"
-import { useState } from "react";
-import metamask from "../assets/MetaMask_Fox.svg.png"
+import { useState,useEffect} from "react";
+import metamask from "../../assets/MetaMask_Fox.svg.png"
+import "./dashboard.css";
+import {ethers} from "ethers"
+
 const buttonClasses = "flex items-center p-2 bg-zinc-700 rounded-lg w-full";
 const imageClasses = "mr-2 w-[30px]" ;
-function CryptoCard({data}) {
+
+function CryptoCard({data,children}) {
     const[isOpen,setIsOpen]=useState(true)
+    const[account,setAccount]=useState(null);
+    
+    useEffect(() => {
+        connectToMetaMask();
+      }, []);
+
+    //Function to connect to MetaMask
+  const connectToMetaMask = async () => {
+    try {
+      // Check if MetaMask is installed and available
+      if (window.ethereum&& window.ethereum.isMetaMask) {
+        // Request account access
+        await window.ethereum.request({ method: 'eth_requestAccounts' });
+        // Get the provider from MetaMask
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+        // Get the signer (current account)
+        const signer = provider.getSigner();
+        // Get the current account address
+        const address = await signer.getAddress();
+        setAccount(address);
+        // Redirect to the dashboard with the account address
+        window.location.href = `/dashboard?address=${address}`;
+      } else {
+        console.log('MetaMask not installed');
+      }
+    } catch (error) {
+      console.error('Error connecting to MetaMask:', error);
+    }
+    return null;
+  };
 
    const close = () => {
         setIsOpen(false);
       };
+     
     
   return (
     <>
@@ -27,10 +64,13 @@ function CryptoCard({data}) {
             </div>
             <ul>
                 <li className="mb-4">
-                    <button className={buttonClasses}>
-                        <img src={metamask}  alt="MetaMask" className={imageClasses} />
+                    <button className={buttonClasses}  >
+                        <img src={metamask}  alt="MetaMask" className={imageClasses} onClick={connectToMetaMask} />
                         MetaMask
                     </button>
+                    {React.Children.map(children, child =>
+         React.cloneElement(child, { account })
+      )}
                 </li>
                 <li className="mb-4">
                 <button className={buttonClasses}>
@@ -60,6 +100,13 @@ function CryptoCard({data}) {
   )
 }
 CryptoCard.propTypes={
-    data:PropTypes.object.isRequired
+    data:PropTypes.object.isRequired,
+    children:PropTypes.object.isRequired
   };
-export default CryptoCard
+export default CryptoCard;
+
+
+
+
+
+

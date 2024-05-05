@@ -1,13 +1,14 @@
 require("@nomicfoundation/hardhat-toolbox");
-
-/** @type import('hardhat/config').HardhatUserConfig */
+//require("dotenv").config();
+ import('hardhat/config.js').HardhatUserConfig 
 module.exports = {
   solidity: "0.8.24",
-  networks:{
-    sapolia:{
-      url:SAPOLIA_URL ||"",
-      accounts:
-      SECRET_KEY !=undefined ? [SECRET_KEY] : jhjsas
-    }
-  }
+  // networks:{
+  //   sapolia:{
+  //     url:process.env.url,
+    
+  //     SECRET_KEY :process.env.SECRET_KEY
+  //   }
+  // }
+
 };

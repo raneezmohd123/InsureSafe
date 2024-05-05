@@ -14,7 +14,7 @@ function Moto({datas}) {
   )
 }
 Moto.propTypes={
-  datas:PropTypes.string.isRequired
+  datas:PropTypes.object.isRequired
 };
 
 export default Moto
