@@ -1,0 +1,19 @@
+name: FortiDevSec Scanner CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: SAST
+        run: |
+          docker pull registry.fortidevsec.forticloud.com/fdevsec_sast:latest
+          docker run --rm --mount type=bind,source=${{ github.workspace }},target=/scan \
+            registry.fortidevsec.forticloud.com/fdevsec_sast:latest
