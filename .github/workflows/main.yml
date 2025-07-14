@@ -14,7 +14,7 @@ jobs:
 
       - name: Run FortiDevSec SAST
         env:
-          FORTIDEVSEC_TOKEN: ${{ secrets.FORTIDEVSEC_TOKEN }}
+          FORTIDEVSEC_TOKEN: ${{ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDk4IiwicGwiOiI2NDk4OjY0OTg6NTI6NzM4IiwiZXhwIjoxNzg0MDExODA5fQ.FNy3xb_noxtZOQRQhPa8Qza6aUr16kPa5fBjZTF3NcA }}
         run: |
           docker pull registry.fortidevsec.forticloud.com/fdevsec_sast:latest
           docker run --rm \
