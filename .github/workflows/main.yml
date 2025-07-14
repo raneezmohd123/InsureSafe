@@ -20,9 +20,9 @@ jobs:
           docker pull registry.fortidevsec.forticloud.com/fdevsec_sast:latest
           docker run --rm \
             -v "${{ github.workspace }}":/scan \
-            -e FORTIDEVSEC_TOKEN=$FORTIDEVSEC_TOKEN \
+            -e FORTIDEVSEC_TOKEN="${FORTIDEVSEC_TOKEN}" \
             -e FORTIDEVSEC_CI=true \
-            -e FORTIDEVSEC_REPO_NAME=${{ github.repository }} \
-            -e FORTIDEVSEC_BRANCH=${{ github.ref_name }} \
+            -e FORTIDEVSEC_REPO_NAME="${GITHUB_REPOSITORY}" \
+            -e FORTIDEVSEC_BRANCH="${GITHUB_REF_NAME}" \
+            -e FORTIDEVSEC_COMMIT="${GITHUB_SHA}" \
             registry.fortidevsec.forticloud.com/fdevsec_sast:latest
-
