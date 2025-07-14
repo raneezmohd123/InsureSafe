@@ -7,20 +7,28 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  scan:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: FortiDevSec Scan
+      - name: Run FortiDevSec Scan
         env:
           FORTIDEVSEC_TOKEN: ${{ secrets.FORTIDEVSEC_TOKEN }}
         run: |
-          env | grep -E "GITHUB_ACTIONS|GITHUB_RUN_NUMBER|GITHUB_REF_NAME|GITHUB_SHA|GITHUB_REPOSITORY" > /tmp/env
+          echo "GITHUB_ACTIONS=true" > /tmp/env
+          echo "GITHUB_RUN_NUMBER=${GITHUB_RUN_NUMBER}" >> /tmp/env
+          echo "GITHUB_REF_NAME=${GITHUB_REF_NAME}" >> /tmp/env
+          echo "GITHUB_SHA=${GITHUB_SHA}" >> /tmp/env
+          echo "GITHUB_REPOSITORY=${GITHUB_REPOSITORY}" >> /tmp/env
           echo "FORTIDEVSEC_TOKEN=$FORTIDEVSEC_TOKEN" >> /tmp/env
-          docker run --pull always --rm \
+
+          docker pull registry.fortidevsec.forticloud.com/fdevsec_sast:latest
+
+          docker run --rm \
             --env-file /tmp/env \
-            --mount type=bind,source=$PWD,target=/scan \
+            --mount type=bind,source=${PWD},target=/scan \
             registry.fortidevsec.forticloud.com/fdevsec_sast:latest
 
