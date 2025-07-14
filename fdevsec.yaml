@@ -1,7 +1,7 @@
 id:
   org: 60fc4652-f112-441f-a8b3-f5f87990ae30
   app: 83a6c7b2-2402-477f-afa1-447b6cbf95f3
-ci_cd:
+CICD:
   tool: github
   branch: main
 
