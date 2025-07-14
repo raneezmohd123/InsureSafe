@@ -10,11 +10,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Run FortiDevSec SAST
+      - name: Run FortiDevSec Scan
         env:
-          FORTIDEVSEC_TOKEN: ${{ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDk4IiwicGwiOiI2NDk4OjY0OTg6NTI6NzM4IiwiZXhwIjoxNzg0MDExODA5fQ.FNy3xb_noxtZOQRQhPa8Qza6aUr16kPa5fBjZTF3NcA }}
+          FORTIDEVSEC_TOKEN: ${{ secrets.FORTIDEVSEC_TOKEN }}
         run: |
           docker pull registry.fortidevsec.forticloud.com/fdevsec_sast:latest
           docker run --rm \
@@ -23,6 +24,5 @@ jobs:
             -e FORTIDEVSEC_CI=true \
             -e FORTIDEVSEC_REPO_NAME=${{ github.repository }} \
             -e FORTIDEVSEC_BRANCH=${{ github.ref_name }} \
-            -e FORTIDEVSEC_COMMIT=${{ github.sha }} \
             registry.fortidevsec.forticloud.com/fdevsec_sast:latest
 
